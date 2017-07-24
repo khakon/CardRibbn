@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Add/Edit order";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add/Edit order
+    </div>
+    <div class="col-lg-6">
+        <h3>Order details</h3>
+        <form role="form">
+            <fieldset disabled="">
+                <div class="form-group">
+                    <label for="disabledSelect">Disabled input</label>
+                    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="disabledSelect">Disabled select menu</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Disabled select</option>
+                    </select>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Disabled Checkbox
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Disabled Button</button>
+            </fieldset>
+        </form>
+        </div>
+        <div class="col-lg-6">
+            <h3>Form Validation States</h3>
+            <form role="form">
+                <div class="form-group has-success">
+                    <label class="control-label" for="inputSuccess">Input with success</label>
+                    <input type="text" class="form-control" id="inputSuccess">
+                </div>
+                <div class="form-group has-warning">
+                    <label class="control-label" for="inputWarning">Input with warning</label>
+                    <input type="text" class="form-control" id="inputWarning">
+                </div>
+                <div class="form-group has-error">
+                    <label class="control-label" for="inputError">Input with error</label>
+                    <input type="text" class="form-control" id="inputError">
+                </div>
+            </form>
+        </div>
+</div>
+

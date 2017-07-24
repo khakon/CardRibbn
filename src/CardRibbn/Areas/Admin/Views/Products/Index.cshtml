@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" data-bind="click:add">
+        New product
+    </button>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myImage" data-bind="click:addImageDefault">
+        Add Image default
+    </button>
+</div>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Products
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="col-sm-12">
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>image</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>type</th>
+                            <th>vendor</th>
+                            <th>price</th>
+                            <th>taxes</th>
+                            <th>Date Created</th>
+                            <th>Last Updated</th>
+                            <th>Edit</th>
+                            <th>add Image</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: list">
+                        <tr class="odd gradeX">
+                            <td data-bind="text:id"></td>
+                            <td>
+                                <img data-bind="attr: { src: '/api/images/' + id + '/' + new Date().getTime(), title: title }" class="image-product">
+                            </td>
+                            <td data-bind="text:title"></td>
+                            <td data-bind="text:description"></td>
+                            <td data-bind="text:type.title"></td>
+                            <td data-bind="text:vendor.name"></td>
+                            <td data-bind="text:price"></td>
+                            <!-- ko if: taxes -->
+                            <td>Yes</td>     
+                            <!-- /ko -->
+                            <!-- ko ifnot: taxes -->
+                            <td>No</td>
+                            <!-- /ko -->                       
+                            <td class="center" data-bind="text:dateCreated"></td>
+                            <td class="center" data-bind="text:lastUpdated"></td>
+                            <td><a href="#" class="btn btn-info btn-circle" data-bind="click:$root.edit"><i class="fa fa-pencil"></i></a></td>
+                            <td><a href="#" class="btn btn-info btn-circle" data-bind="click:$root.addImage"><i class="fa fa-image"></i></a></td>
+                            <td><a href="#" class="btn btn-warning btn-circle" data-bind="click:$root.delete"><i class="fa fa-times"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="panel-body">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add/Edit product</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form" data-bind="with:currentItem">
+                                        <input class="form-control" name="id" type="hidden" data-bind="value:id">
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control" name="title" placeholder="Title" data-bind="value:title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea type="text" class="form-control" name="description" placeholder="Description" data-bind="value:description"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="number" class="form-control" name="price" placeholder="Price" data-bind="value:price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Taxes</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="" data-bind="checked:taxes">Taxes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Product Type</label>
+                                            <select class="form-control" data-bind="options: $root.types,
+                       optionsText: 'title',
+                       optionsValue: 'id',
+                       value: $root.selectedType,
+                       optionsCaption: 'Choose...'"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Vendor</label>
+                                            <select class="form-control" data-bind="options: $root.vendors,
+                       optionsText: 'name',
+                       optionsValue: 'id',
+                       value: $root.selectedVendor,
+                       optionsCaption: 'Choose...'"></select>
+                                        </div>
+                                        <div data-bind="if: $root.isNew()" class="form-group">
+                                            <label>Collections</label>
+<select id="select2" multiple="multiple" class="form-control" data-bind="options: $root.collections, optionsText: 'title', optionsValue: 'id'
+        , selectedOptions: $root.selectedCollections, multiselect: {
+includeSelectAllOption: true
+}"></select>   
+                                        </div>
+                                        <div data-bind="if: $root.isNew()" class="form-group">
+                                            <label>Tags</label>
+<select id="select2" multiple="multiple" class="form-control" data-bind="options: $root.tags, optionsText: 'title', optionsValue: 'id'
+, selectedOptions: $root.selectedTags, multiselect: {
+includeSelectAllOption: true
+}"></select>
+                                        </div>
+</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bind="click:save">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add/Edit image</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form" data-bind="with:currentImage">
+                                        <input class="form-control" name="id" type="hidden" data-bind="value:id">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input class="form-control" type="file"
+                                                   data-bind="file: {data: image}" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bind="click:saveImage">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+@section scripts{
+    <script src="~/app/views/products.js"></script>
+    <script src="~/app/binding/knockoutjs-file-binding.js"></script>
+    <script src="~/lib/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <link href="~/lib/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" rel="stylesheet" />
+}

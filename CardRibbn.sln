@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B38BE39A-CF31-4AF0-858E-9D0680B58A8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{395943F2-B7D3-413A-9D98-0D079BDB6A7D}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardRibbn", "src\CardRibbn\CardRibbn.csproj", "{E905CC29-A349-4CD8-9967-296736F377C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E905CC29-A349-4CD8-9967-296736F377C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E905CC29-A349-4CD8-9967-296736F377C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E905CC29-A349-4CD8-9967-296736F377C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E905CC29-A349-4CD8-9967-296736F377C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E905CC29-A349-4CD8-9967-296736F377C5} = {B38BE39A-CF31-4AF0-858E-9D0680B58A8A}
+	EndGlobalSection
+EndGlobal

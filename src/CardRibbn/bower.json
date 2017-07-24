@@ -1,0 +1,16 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "jquery": "2.2.0",
+    "jquery-validation": "1.14.0",
+    "jquery-validation-unobtrusive": "3.2.6",
+    "startbootstrap-sb-admin-2": "startbootstrap-sb-admin-2-be#v3.3.7",
+    "knockout": "v3.4.2",
+    "bootstrap-multiselect": "v0.9.13"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.7"
+  }
+}
